@@ -22,7 +22,7 @@ public class SensorController {
 
     @RequestMapping(value="/sensor", method= RequestMethod.POST)
     public @ResponseBody
-    HttpEntity<BigInteger> addPlatform(@RequestBody Sensor sensor) {
+    HttpEntity<BigInteger> addPlatform(@RequestBody String sensor) {
 
     }
 }
