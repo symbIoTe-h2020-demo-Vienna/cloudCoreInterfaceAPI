@@ -1,6 +1,5 @@
 package eu.h2020.symbiote.controllers;
 
-import com.google.gson.Gson;
 import eu.h2020.symbiote.messaging.RPCMessager;
 import eu.h2020.symbiote.model.RegistrationObjectType;
 import org.apache.commons.logging.Log;
@@ -58,10 +57,6 @@ public class RegistryAPIController {
         String receivedObject = RPCMessager.sendMessage(body, RegistrationObjectType.SENSOR, platformId);
         System.out.println("|||||||||||||||||||||||||||||||");
         System.out.println(receivedObject);
-        Gson gson = new Gson();
-        String response = gson.toJson(receivedObject);
-        System.out.println("///////////////////////////////");
-        System.out.println(response);
-        return new ResponseEntity<String>(response, HttpStatus.ACCEPTED);
+        return new ResponseEntity<String>(receivedObject, HttpStatus.ACCEPTED);
     }
 }
