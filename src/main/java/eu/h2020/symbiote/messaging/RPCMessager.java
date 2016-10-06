@@ -13,15 +13,15 @@ public class RPCMessager {
 
     private static Log log = LogFactory.getLog(RPCMessager.class);
 
-    public static String sendMessage(String body, RegistrationObjectType type, String parentID) {
+    public static String sendMessage(String bodyInJson, RegistrationObjectType type, String parentID) {
         log.info("Trying to send the message - rpcCall() triggered...");
-        String response = "";
+        String response="";
         try {
             RPCClient rpcClient = RPCClient.getInstance();
-            RegistrationObject object = new RegistrationObject(body, type, parentID);
+            RegistrationObject regPOJO = new RegistrationObject(bodyInJson, type, parentID);
             Gson gson = new Gson();
-            String objectJson = gson.toJson(object);
-            response = rpcClient.rpcCall(objectJson);
+            String regPOJOinJson = gson.toJson(regPOJO);
+            response = rpcClient.rpcCall(regPOJOinJson);
             log.info("[V] Received RPC-MSG : \n"
                     + response);
         } catch (Exception e) {
