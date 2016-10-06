@@ -5,7 +5,10 @@ import eu.h2020.symbiote.messaging.RPCMessager;
 import eu.h2020.symbiote.model.RegistrationObjectType;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.http.*;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,7 +40,6 @@ public class RegistryAPIController {
         log.info("body:\n" + body + "\n");
 
         String response = RPCMessager.sendMessage(body, RegistrationObjectType.PLATFORM, null);
-
         return new ResponseEntity<String>(response, HttpStatus.ACCEPTED);
     }
 
@@ -54,10 +56,12 @@ public class RegistryAPIController {
         log.info("body:\n" + body + "\n");
 
         String receivedObject = RPCMessager.sendMessage(body, RegistrationObjectType.SENSOR, platformId);
+        System.out.println("|||||||||||||||||||||||||||||||");
+        System.out.println(receivedObject);
         Gson gson = new Gson();
         String response = gson.toJson(receivedObject);
-
+        System.out.println("///////////////////////////////");
+        System.out.println(response);
         return new ResponseEntity<String>(response, HttpStatus.ACCEPTED);
     }
-
 }
