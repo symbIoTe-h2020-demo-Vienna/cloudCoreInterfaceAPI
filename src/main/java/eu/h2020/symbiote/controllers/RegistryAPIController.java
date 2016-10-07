@@ -58,10 +58,10 @@ public class RegistryAPIController {
         String receivedObject = RPCMessager.sendMessage(body, RegistrationObjectType.SENSOR, platformId);
         System.out.println("|||||||||||||||||||||||||||||||");
         System.out.println(receivedObject);
-        Gson gson = new Gson();
-        String response = gson.toJson(receivedObject);
+//        Gson gson = new Gson();
+//        String response = gson.toJson(receivedObject);
         System.out.println("///////////////////////////////");
-        System.out.println(response);
-        return new ResponseEntity<String>(response, HttpStatus.ACCEPTED);
+        System.out.println(receivedObject);
+        return new ResponseEntity<String>(receivedObject, HttpStatus.ACCEPTED);
     }
 }
